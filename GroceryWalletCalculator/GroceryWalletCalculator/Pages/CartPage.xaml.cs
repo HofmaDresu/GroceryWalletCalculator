@@ -10,10 +10,18 @@ namespace GroceryWalletCalculator.Pages
 {
     public partial class CartPage : ContentPage
     {
+        private CartViewModel _vm;
+
         public CartPage(int storeId, double spendingLimit)
         {
             InitializeComponent();
-            BindingContext = new CartViewModel(storeId, spendingLimit);
+            BindingContext = _vm = new CartViewModel(storeId, spendingLimit);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _vm.RefreshData();
         }
     }
 }

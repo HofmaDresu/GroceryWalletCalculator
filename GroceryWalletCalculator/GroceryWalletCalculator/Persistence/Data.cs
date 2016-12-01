@@ -29,5 +29,7 @@ namespace GroceryWalletCalculator.Persistence
                 Image = "wallmart.png"
             }
         };
+
+        public static List<GroceryItem> Cart = new List<GroceryItem>();
     }
 }

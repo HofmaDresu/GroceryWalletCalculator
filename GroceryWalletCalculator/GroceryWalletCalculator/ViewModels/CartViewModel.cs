@@ -25,6 +25,12 @@ namespace GroceryWalletCalculator.ViewModels
             ManualAddItem = new Command(_ => { }, _ => false);
         }
 
+        public void RefreshData()
+        {
+            Cart.Clear();
+            Cart.AddRange(Data.Cart);
+        }
+
         private double _remainingCash;
         public string RemainingCash => $"{_remainingCash:C2} left";
 

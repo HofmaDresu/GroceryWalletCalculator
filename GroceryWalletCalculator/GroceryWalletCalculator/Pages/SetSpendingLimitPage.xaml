@@ -4,6 +4,8 @@
              x:Class="GroceryWalletCalculator.Pages.SetSpendingLimitPage"
              Title="Spending Limit">
   <StackLayout Orientation="Vertical" Margin="0,20,0,0">
-    <Label Text="{Binding SpendingText}" FontSize="Large"></Label>
+    <Label Text="{Binding SpendingText}" FontSize="Large" HorizontalOptions="Center"></Label>
+    <Entry HorizontalOptions="Fill" Keyboard="Numeric" Text="{Binding SpendingLimit}"></Entry>
+    <Button Text="Start Shopping" Command="{Binding StartShoppingCommand}"></Button>
   </StackLayout>
 </ContentPage>

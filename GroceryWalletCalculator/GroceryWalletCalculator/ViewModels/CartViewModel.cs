@@ -17,6 +17,7 @@ namespace GroceryWalletCalculator.ViewModels
         public CartViewModel(int storeId, double spendingLimit)
         {
             _spendingLimit = spendingLimit;
+            _remainingCash = spendingLimit;
             Title = $"Grocery Cart for {Data.Stores.Single(s => s.Id == storeId).Name}";
             Cart = new ObservableRangeCollection<GroceryItem>();
 
@@ -25,11 +26,7 @@ namespace GroceryWalletCalculator.ViewModels
         }
 
         private double _remainingCash;
-        public double RemainingCash
-        {
-            get { return _remainingCash; }
-            set { SetProperty(ref _remainingCash, value); }
-        }
+        public string RemainingCash => $"{_remainingCash:C2} left";
 
         public ObservableRangeCollection<GroceryItem> Cart { get; set; }
 

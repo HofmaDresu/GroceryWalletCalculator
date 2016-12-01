@@ -8,12 +8,12 @@ using Xamarin.Forms;
 
 namespace GroceryWalletCalculator.Pages
 {
-    public partial class SetSpendingLimitPage : ContentPage
+    public partial class CartPage : ContentPage
     {
-        public SetSpendingLimitPage(int storeId)
+        public CartPage(int storeId, double spendingLimit)
         {
             InitializeComponent();
-            BindingContext = new SetSpendingLimitViewModel(storeId, Navigation);
+            BindingContext = new CartViewModel(storeId, spendingLimit);
         }
     }
 }

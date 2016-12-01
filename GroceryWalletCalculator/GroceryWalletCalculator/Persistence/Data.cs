@@ -30,6 +30,26 @@ namespace GroceryWalletCalculator.Persistence
             }
         };
 
-        public static List<GroceryItem> Cart = new List<GroceryItem>();
+        public static List<GroceryItem> Cart = new List<GroceryItem>
+        {
+            new GroceryItem
+            {
+                Name = "Eggs",
+                Price = 6.99,
+                Quantity = 2
+            },
+            new GroceryItem
+            {
+                Name = "Bacon",
+                Price = 10.99,
+                Quantity = 1
+            },
+            new GroceryItem
+            {
+                Name = "Milk",
+                Price = 2.99,
+                Quantity = 1
+            }
+        };
     }
 }

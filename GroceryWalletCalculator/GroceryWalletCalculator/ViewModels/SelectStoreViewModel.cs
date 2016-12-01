@@ -31,11 +31,11 @@ namespace GroceryWalletCalculator.ViewModels
             get { return _selectedStore; }
             set
             {
+                if (value == null) return;
+                _nav.PushAsync(new SetSpendingLimitPage(value.Id));
+
+                SetProperty(ref _selectedStore, value);
                 SetProperty(ref _selectedStore, null);
-                if (value != null)
-                {
-                    _nav.PushAsync(new SetSpendingLimitPage(value.Id));
-                }
             }
         }
     }

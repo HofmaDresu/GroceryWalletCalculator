@@ -10,7 +10,7 @@
     <ListView x:Name="ListView"
               ItemsSource="{Binding Stores}"
               RowHeight="75"
-              SelectedItem="{Binding SelectedStore}">
+              SelectedItem="{Binding SelectedStore, Mode=TwoWay}">
       <ListView.ItemTemplate>
         <DataTemplate>
           <ViewCell>

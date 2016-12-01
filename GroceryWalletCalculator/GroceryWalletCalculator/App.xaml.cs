@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using GroceryWalletCalculator.Pages;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace GroceryWalletCalculator
 {
     public partial class App : Application

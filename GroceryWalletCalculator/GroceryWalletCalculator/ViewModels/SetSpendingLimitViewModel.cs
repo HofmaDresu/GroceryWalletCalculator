@@ -17,11 +17,11 @@ namespace GroceryWalletCalculator.ViewModels
         {
             _storeId = storeId;
             SpendingText = $"How much can you spend at {Data.Stores.Single(s => s.Id == storeId).Name}?";
-            StartShoppingCommand = new Command(_ => { }, _ => SpendingLimit.HasValue && SpendingLimit.Value > 0);
+            StartShoppingCommand = new Command(_ => { }, _ => !string.IsNullOrWhiteSpace(SpendingLimit) && double.Parse("0"+SpendingLimit) > 0);
         }
 
-        private double? _spendingLimit;
-        public double? SpendingLimit
+        private string _spendingLimit;
+        public string SpendingLimit
         {
             get { return _spendingLimit; }
             set
@@ -38,6 +38,6 @@ namespace GroceryWalletCalculator.ViewModels
             set { SetProperty(ref _spendingText, value); }
         }
 
-        public Command StartShoppingCommand; 
+        public Command StartShoppingCommand { get; protected set; }
     }
 }

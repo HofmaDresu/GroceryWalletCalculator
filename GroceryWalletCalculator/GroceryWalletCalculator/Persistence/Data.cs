@@ -9,25 +9,24 @@ namespace GroceryWalletCalculator.Persistence
 {
     public static class Data
     {
-        public static string foo = "asdf";
         public static Store[] Stores = {
             new Store
             {
                 Id = 1,
                 Name = "Meijer",
-                Image = "meijer"
+                Image = "meijer.png"
             },
             new Store
             {
                 Id = 2,
                 Name = "Kroger",
-                Image = "kroger"
+                Image = "kroger.png"
             },
             new Store
             {
                 Id = 3,
                 Name = "Wallmart",
-                Image = "wallmart"
+                Image = "wallmart.png"
             }
         };
     }

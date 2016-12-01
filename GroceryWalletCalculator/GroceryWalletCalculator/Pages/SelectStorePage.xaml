@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroceryWalletCalculator.Pages.SelectStorePage"
+             Title="Grocery Calculator">
+  <StackLayout
+    Orientation="Vertical">
+    <Label HorizontalOptions="Center" Text="What store are you at?" FontSize="Large"/>
+  
+    <ListView x:Name="ListView"
+              BindingContext="Stores">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <Image Source="{Binding Image}" />
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

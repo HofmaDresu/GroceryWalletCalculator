@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using GroceryWalletCalculator.Pages;
 using Xamarin.Forms;
 
 namespace GroceryWalletCalculator
@@ -13,7 +13,7 @@ namespace GroceryWalletCalculator
         {
             InitializeComponent();
 
-            MainPage = new GroceryWalletCalculator.MainPage();
+            MainPage = new NavigationPage(new SelectStorePage());
         }
 
         protected override void OnStart()

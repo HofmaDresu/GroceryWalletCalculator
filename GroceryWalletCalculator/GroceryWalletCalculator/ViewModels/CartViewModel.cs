@@ -19,7 +19,7 @@ namespace GroceryWalletCalculator.ViewModels
             _spendingLimit = spendingLimit;
             _remainingCash = spendingLimit;
             Title = $"Grocery Cart for {Data.Stores.Single(s => s.Id == storeId).Name}";
-            Cart = new ObservableRangeCollection<GroceryItem>();
+            Cart = new ObservableRangeCollection<FormattedGroceryItem>();
 
             ScanItem = new Command(_ => { }, _ => false);
             ManualAddItem = new Command(_ => { }, _ => false);
@@ -28,7 +28,7 @@ namespace GroceryWalletCalculator.ViewModels
         public void RefreshData()
         {
             Cart.Clear();
-            Cart.AddRange(Data.Cart);
+            Cart.AddRange(Data.Cart.Select(c => new FormattedGroceryItem(c)));
             _remainingCash = _spendingLimit - Cart.Sum(c => c.Price*c.Quantity);
 
             OnPropertyChanged("RemainingCash");
@@ -37,10 +37,27 @@ namespace GroceryWalletCalculator.ViewModels
         private double _remainingCash;
         public string RemainingCash => $"{_remainingCash:C2} left";
 
-        public ObservableRangeCollection<GroceryItem> Cart { get; set; }
+        public ObservableRangeCollection<FormattedGroceryItem> Cart { get; set; }
 
         public Command ScanItem { get; protected set; }
 
         public Command ManualAddItem { get; protected set; }
+    }
+
+    public class FormattedGroceryItem
+    {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public double Price { get; set; }
+
+        public string NameAndQuantity => $"{Quantity} {Name}";
+        public string FormattedPrice => $"{Price:C2}";
+
+        public FormattedGroceryItem(GroceryItem data)
+        {
+            Name = data.Name;
+            Quantity = data.Quantity;
+            Price = data.Price;
+        }
     }
 }

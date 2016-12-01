@@ -5,7 +5,15 @@
              Title="{Binding Title}">
   <StackLayout Orientation="Vertical" Margin="0,20,0,0">
     <Label Text="{Binding RemainingCash}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="FillAndExpand"></Label>
-
+    <ListView x:Name="ListView"
+                  ItemsSource="{Binding Cart}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding NameAndQuantity}"
+                    Detail="{Binding FormattedPrice}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
     <StackLayout VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
       <Button Text="Scan Item" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
       <Button Text="Manually Add Item" Command="{Binding ManualAddItem}" HorizontalOptions="CenterAndExpand"></Button>

@@ -9,7 +9,7 @@ namespace GroceryWalletCalculator.Models
     public class GroceryItem
     {
         public string Name { get; set; }
-        public int Quantity { get; set; }
+        public double Quantity { get; set; }
         public double Price { get; set; }
     }
 }

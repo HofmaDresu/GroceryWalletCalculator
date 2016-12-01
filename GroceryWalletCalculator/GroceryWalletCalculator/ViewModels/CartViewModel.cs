@@ -29,6 +29,9 @@ namespace GroceryWalletCalculator.ViewModels
         {
             Cart.Clear();
             Cart.AddRange(Data.Cart);
+            _remainingCash = _spendingLimit - Cart.Sum(c => c.Price*c.Quantity);
+
+            OnPropertyChanged("RemainingCash");
         }
 
         private double _remainingCash;

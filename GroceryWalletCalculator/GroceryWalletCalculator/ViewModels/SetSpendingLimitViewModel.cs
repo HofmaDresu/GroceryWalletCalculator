@@ -14,7 +14,7 @@ namespace GroceryWalletCalculator.ViewModels
         public SetSpendingLimitViewModel(int storeId)
         {
             _storeId = storeId;
-            SpendingText = $"How much can you spend at {Data.Stores.Single(s => s.Id == storeId).Name}";
+            SpendingText = $"How much can you spend at {Data.Stores.Single(s => s.Id == storeId).Name}?";
         }
 
         private double _spendingLimit;

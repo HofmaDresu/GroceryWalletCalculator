@@ -13,7 +13,7 @@ namespace GroceryWalletCalculator.Pages
         public SelectStorePage()
         {
             InitializeComponent();
-            BindingContext = new SelectStoreViewModel();
+            BindingContext = new SelectStoreViewModel(Navigation);
         }
     }
 }

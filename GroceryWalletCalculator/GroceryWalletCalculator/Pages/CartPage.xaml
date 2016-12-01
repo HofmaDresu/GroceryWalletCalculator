@@ -4,6 +4,11 @@
              x:Class="GroceryWalletCalculator.Pages.CartPage"
              Title="{Binding Title}">
   <StackLayout Orientation="Vertical" Margin="0,20,0,0">
-    <Label Text="{Binding RemainingCash}" FontSize="Large" HorizontalOptions="Center"></Label>
+    <Label Text="{Binding RemainingCash}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="FillAndExpand"></Label>
+
+    <StackLayout VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+      <Button Text="Scan Item" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
+      <Button Text="Manually Add Item" Command="{Binding ManualAddItem}" HorizontalOptions="CenterAndExpand"></Button>
+    </StackLayout>
   </StackLayout>
 </ContentPage>

@@ -52,6 +52,7 @@ namespace GroceryWalletCalculator.ViewModels
             set
             {
                 SetProperty(ref _itemName, value);
+                AddItemCommand.ChangeCanExecute();
             }
         }
 
@@ -62,6 +63,7 @@ namespace GroceryWalletCalculator.ViewModels
             set
             {
                 SetProperty(ref _itemPrice, value);
+                AddItemCommand.ChangeCanExecute();
             }
         }
 
@@ -72,10 +74,11 @@ namespace GroceryWalletCalculator.ViewModels
             set
             {
                 SetProperty(ref _itemQuantity, value);
+                AddItemCommand.ChangeCanExecute();
             }
         }
 
-        public Command AddItemCommand;
-        public Command CancelCommand;
+        public Command AddItemCommand { get; set; }
+        public Command CancelCommand { get; set; }
     }
 }

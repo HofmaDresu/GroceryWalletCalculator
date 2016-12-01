@@ -15,7 +15,7 @@ namespace GroceryWalletCalculator.Pages
         public CartPage(int storeId, double spendingLimit)
         {
             InitializeComponent();
-            BindingContext = _vm = new CartViewModel(storeId, spendingLimit);
+            BindingContext = _vm = new CartViewModel(storeId, spendingLimit, Navigation);
         }
 
         protected override void OnAppearing()

@@ -1788,6 +1788,16 @@
           }
         }
       },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.168": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -3442,6 +3452,16 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.168": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -5058,6 +5078,16 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.168": {
@@ -6720,6 +6750,16 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.168": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -8336,6 +8376,16 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.168": {
@@ -9998,6 +10048,16 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.3.168": {
         "compile": {
           "lib/uap10.0/Xamarin.Forms.Core.dll": {},
@@ -11614,6 +11674,16 @@
         },
         "runtime": {
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
+        }
+      },
+      "Xam.Plugin.Media/2.6.1": {
+        "compile": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10/Plugin.Media.Abstractions.dll": {},
+          "lib/UAP10/Plugin.Media.dll": {}
         }
       },
       "Xamarin.Forms/2.3.3.168": {
@@ -14769,6 +14839,66 @@
         "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll"
       ]
     },
+    "Xam.Plugin.Media/2.6.1": {
+      "sha512": "gtwAgBKHjMM7D1QPKiZuVCwxCMj2bxTJU1K9d2YwnnTt/q0xokqziUEvKDHPDvCLHkryE4TfhS0iAdYv6QrFzA==",
+      "type": "package",
+      "path": "Xam.Plugin.Media/2.6.1",
+      "files": [
+        "Xam.Plugin.Media.2.6.1.nupkg.sha512",
+        "Xam.Plugin.Media.nuspec",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Media.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Media.dll",
+        "lib/MonoAndroid10/Plugin.Media.pdb",
+        "lib/MonoAndroid10/Plugin.Media.xml",
+        "lib/UAP10/Plugin.Media.Abstractions.dll",
+        "lib/UAP10/Plugin.Media.Abstractions.pdb",
+        "lib/UAP10/Plugin.Media.Abstractions.xml",
+        "lib/UAP10/Plugin.Media.dll",
+        "lib/UAP10/Plugin.Media.pdb",
+        "lib/UAP10/Plugin.Media.xml",
+        "lib/Xamarin.iOS10/Plugin.Media.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Media.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Media.dll",
+        "lib/Xamarin.iOS10/Plugin.Media.xml",
+        "lib/net45/Plugin.Media.Abstractions.dll",
+        "lib/net45/Plugin.Media.Abstractions.xml",
+        "lib/net45/Plugin.Media.dll",
+        "lib/net45/Plugin.Media.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.pdb",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.Abstractions.xml",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.dll",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.pdb",
+        "lib/portable-net45+wp80+win8+wpa81/Plugin.Media.xml",
+        "lib/win8/Plugin.Media.Abstractions.dll",
+        "lib/win8/Plugin.Media.Abstractions.pdb",
+        "lib/win8/Plugin.Media.Abstractions.xml",
+        "lib/win8/Plugin.Media.dll",
+        "lib/win8/Plugin.Media.pdb",
+        "lib/win8/Plugin.Media.xml",
+        "lib/wp8/Plugin.Media.Abstractions.dll",
+        "lib/wp8/Plugin.Media.Abstractions.pdb",
+        "lib/wp8/Plugin.Media.Abstractions.xml",
+        "lib/wp8/Plugin.Media.dll",
+        "lib/wp8/Plugin.Media.pdb",
+        "lib/wp8/Plugin.Media.xml",
+        "lib/wpa81/Plugin.Media.Abstractions.dll",
+        "lib/wpa81/Plugin.Media.Abstractions.pdb",
+        "lib/wpa81/Plugin.Media.Abstractions.xml",
+        "lib/wpa81/Plugin.Media.dll",
+        "lib/wpa81/Plugin.Media.pdb",
+        "lib/wpa81/Plugin.Media.pri",
+        "lib/wpa81/Plugin.Media.xml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUI.xaml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUI.xbf",
+        "lib/wpa81/Plugin.Media/CameraCaptureUIPage.xaml",
+        "lib/wpa81/Plugin.Media/CameraCaptureUIPage.xbf",
+        "lib/wpa81/Plugin.Media/Plugin.Media.xr.xml",
+        "readme.txt"
+      ]
+    },
     "Xamarin.Forms/2.3.3.168": {
       "sha512": "TVfXJHqoDgplaEAe9ZyZfleE1EwZrqNbSjFPh1RH3x+Ovz04fU4BoKhHpi3qwvhphyWAkgbBra98Yp+baYH9GA==",
       "type": "package",
@@ -14934,6 +15064,7 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Xam.Plugin.Media >= 2.6.1",
       "Xamarin.Forms >= 2.3.3.168"
     ],
     "UAP,Version=v10.0": []

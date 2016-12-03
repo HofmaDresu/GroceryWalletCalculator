@@ -14,7 +14,7 @@ namespace GroceryWalletCalculator.Keys
         public string MicrosoftVisionApiKey { get; set; }
 
         private static Keys _instance;
-        public static Keys GetKeys()
+        public static async Task<Keys> GetKeys()
         {
             if (_instance != null) return _instance;
 
@@ -22,7 +22,7 @@ namespace GroceryWalletCalculator.Keys
             var stream = assembly.GetManifestResourceStream("GroceryWalletCalculator.Keys.keys.json");
             using (var reader = new StreamReader(stream))
             {
-                _instance = JsonConvert.DeserializeObject<Keys>(reader.ReadToEnd());
+                _instance = await Task.Run(() => JsonConvert.DeserializeObject<Keys>(reader.ReadToEnd()));
             }
             return _instance;
         }

@@ -33,6 +33,8 @@ namespace GroceryWalletCalculator.ViewModels
                     Directory = "PriceTags",
                     Name = "PriceTag.jpg"
                 });
+
+                var keys = await Keys.Keys.GetKeys();
             }, _ => CrossMedia.Current.IsCameraAvailable);
             ManualAddItem = new Command(_ => _nav.PushAsync(new AddManualItemPage(_remainingCash)));
         }

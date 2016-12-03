@@ -20,7 +20,6 @@ namespace GroceryWalletCalculator.ViewModels
             _nav = nav;
             Stores = new ObservableRangeCollection<Store>();
             Stores.AddRange(Data.Stores);
-            var keys = Keys.Keys.GetKeys();
         }
 
         public ObservableRangeCollection<Store> Stores { get; set; }

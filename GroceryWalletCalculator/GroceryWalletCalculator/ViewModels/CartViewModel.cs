@@ -7,6 +7,8 @@ using GroceryWalletCalculator.Models;
 using GroceryWalletCalculator.Pages;
 using GroceryWalletCalculator.Persistence;
 using MvvmHelpers;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 
 namespace GroceryWalletCalculator.ViewModels
@@ -24,7 +26,14 @@ namespace GroceryWalletCalculator.ViewModels
             Title = $"Grocery Cart for {Data.Stores.Single(s => s.Id == storeId).Name}";
             Cart = new ObservableRangeCollection<FormattedGroceryItem>();
 
-            ScanItem = new Command(_ => { }, _ => false);
+            ScanItem = new Command(async _ =>
+            {
+                var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                {
+                    Directory = "PriceTags",
+                    Name = "PriceTag.jpg"
+                });
+            }, _ => CrossMedia.Current.IsCameraAvailable);
             ManualAddItem = new Command(_ => _nav.PushAsync(new AddManualItemPage(_remainingCash)));
         }
 
@@ -33,7 +42,7 @@ namespace GroceryWalletCalculator.ViewModels
             Cart.Clear();
             Cart.AddRange(Data.Cart.Select(c => new FormattedGroceryItem(c)));
             _remainingCash = _spendingLimit - Cart.Sum(c => c.Price*c.Quantity);
-
+            ScanItem.ChangeCanExecute();
             OnPropertyChanged("RemainingCash");
         }
 

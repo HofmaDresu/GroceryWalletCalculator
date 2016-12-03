@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GroceryWalletCalculator.ViewModels;
+using Plugin.Media;
 using Xamarin.Forms;
 
 namespace GroceryWalletCalculator.Pages
@@ -14,13 +15,14 @@ namespace GroceryWalletCalculator.Pages
 
         public CartPage(int storeId, double spendingLimit)
         {
-            InitializeComponent();
             BindingContext = _vm = new CartViewModel(storeId, spendingLimit, Navigation);
+            InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+            await CrossMedia.Current.Initialize();
             _vm.RefreshData();
         }
     }

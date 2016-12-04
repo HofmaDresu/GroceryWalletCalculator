@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +11,7 @@ using MvvmHelpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
+using static System.Char;
 
 namespace GroceryWalletCalculator.ViewModels
 {
@@ -59,20 +59,12 @@ namespace GroceryWalletCalculator.ViewModels
                     return double.TryParse(w.Text, out price) ? price : 999999;
                 })).Min();
 
-                var foo = 1;
+                await _nav.PushAsync(new AddOcrItemPage(_remainingCash, itemName, itemPrice));
             }, _ => CrossMedia.Current.IsCameraAvailable);
-            ManualAddItem = new Command(_ => _nav.PushAsync(new AddManualItemPage(_remainingCash)));
+            ManualAddItem = new Command(async _ => await _nav.PushAsync(new AddManualItemPage(_remainingCash)));
         }
-        bool IsAllUpper(string input)
-        {
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (!Char.IsUpper(input[i]))
-                    return false;
-            }
 
-            return true;
-        }
+        private bool IsAllUpper(string input) => input.Cast<char>().All(IsUpper);
 
         public void RefreshData()
         {

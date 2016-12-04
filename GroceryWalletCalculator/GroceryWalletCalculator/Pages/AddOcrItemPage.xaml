@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GroceryWalletCalculator.Pages.AddOcrItemPage">
+  <Grid Padding="20,20,20,20">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto"></ColumnDefinition>
+      <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+      <RowDefinition Height="Auto"></RowDefinition>
+    </Grid.RowDefinitions>
+
+
+    <Label Grid.Column="0" Grid.Row="0" Text="Item Name:" VerticalOptions="Center"/>
+    <Entry Grid.Column="1" Grid.Row="0" Text="{Binding ItemName}" />
+    <Label Grid.Column="0" Grid.Row="1" Text="Item Price:" VerticalOptions="Center" />
+    <Entry Grid.Column="1" Grid.Row="1" Keyboard="Numeric" Text="{Binding ItemPrice}" />
+    <Label Grid.Column="0" Grid.Row="2" Text="Item Quantity:" VerticalOptions="Center" />
+    <Entry Grid.Column="1" Grid.Row="2" Keyboard="Numeric" Text="{Binding ItemQuantity}" />
+
+    <Button Grid.Column="0" Grid.Row="3" Text="Cancel" Command="{Binding CancelCommand}"/>
+    <Button Grid.Column="1" Grid.Row="3" Text="Add" Command="{Binding AddItemCommand}"/>
+  </Grid>
+</ContentPage>

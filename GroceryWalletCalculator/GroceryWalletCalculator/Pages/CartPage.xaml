@@ -15,7 +15,7 @@
       </ListView.ItemTemplate>
     </ListView>
     <StackLayout VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-      <Button Text="Scan Item" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
+      <Button Text="Scan Price Tag" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
       <Button Text="Manually Add Item" Command="{Binding ManualAddItem}" HorizontalOptions="CenterAndExpand"></Button>
     </StackLayout>
   </StackLayout>

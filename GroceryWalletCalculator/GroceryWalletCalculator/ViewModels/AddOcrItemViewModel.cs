@@ -15,7 +15,7 @@ namespace GroceryWalletCalculator.ViewModels
         private readonly double _remainingLimit;
         private readonly INavigation _nav;
 
-        public AddOcrItemViewModel(double remainingLimit, string ocrItemName, double ocrItemPrice, INavigation nav)
+        public AddOcrItemViewModel(double remainingLimit, string ocrItemName, double? ocrItemPrice, INavigation nav)
         {
             _remainingLimit = remainingLimit;
             _nav = nav;

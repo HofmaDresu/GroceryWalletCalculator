@@ -31,36 +31,43 @@ namespace GroceryWalletCalculator.ViewModels
 
             ScanItem = new Command(async _ =>
             {
-                var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                try
                 {
-                    Directory = "PriceTags",
-                    Name = "PriceTag.jpg"
-                });
+                    var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                    {
+                        Directory = "PriceTags",
+                        Name = "PriceTag.jpg"
+                    });
 
-                var keys = await Keys.Keys.GetKeys();
+                    var keys = await Keys.Keys.GetKeys();
 
-                OcrResults text;
-                var client = new VisionServiceClient(keys.MicrosoftVisionApiKey);
-                using (var photoStream = photo.GetStream())
-                {
-                    text = await client.RecognizeTextAsync(photoStream);
+                    OcrResults text;
+                    var client = new VisionServiceClient(keys.MicrosoftVisionApiKey);
+                    using (var photoStream = photo.GetStream())
+                    {
+                        text = await client.RecognizeTextAsync(photoStream);
+                    }
+
+                    var itemName = text.Regions.SelectMany(r => r.Lines.Where(l => !AllWordsAreNumeric(l) && l.Words.All(w => IsAllUpper(w.Text) && (!WordContainsNonAlphaNumbers(w) || WordIsNumeric(w))))
+                                                .Select(l => string.Join(" ", l.Words.Select(w => w.Text)))).FirstOrDefault();
+
+                    var pureNumericLines = text.Regions.SelectMany(r => r.Lines.Where(AllWordsAreNumeric)).ToList();
+
+                    var prices = pureNumericLines?.SelectMany(l => l?.Words?.Select(w =>
+                    {
+                        double price;
+                        return double.TryParse(w.Text, out price) ? price : 999999;
+                    })).ToList();
+
+                    var itemPrice = prices.Any() ? prices.Min() : (double?)null;
+
+                    await _nav.PushAsync(new AddOcrItemPage(_remainingCash, itemName, itemPrice));
                 }
-
-                var itemName = text.Regions.SelectMany(r => r.Lines.Where(l => l.Words.All(w => IsAllUpper(w.Text))).Select(l => string.Join(" ", l.Words.Select(w => w.Text)))).FirstOrDefault();
-
-                var pureNumericLines = text.Regions.SelectMany(r => r.Lines.Where(l => l.Words.All(w =>
+                catch (Exception ex)
                 {
-                    double price;
-                    return double.TryParse(w.Text, out price);
-                })));
 
-                var itemPrice = pureNumericLines.SelectMany(l => l.Words.Select(w =>
-                {
-                    double price;
-                    return double.TryParse(w.Text, out price) ? price : 999999;
-                })).Min();
-
-                await _nav.PushAsync(new AddOcrItemPage(_remainingCash, itemName, itemPrice));
+                    int asdf = 1;
+                }
             }, _ => CrossMedia.Current.IsCameraAvailable);
 
             ManualAddItem = new Command(async _ => await _nav.PushAsync(new AddManualItemPage(_remainingCash)));
@@ -72,7 +79,23 @@ namespace GroceryWalletCalculator.ViewModels
             });
         }
 
-        private bool IsAllUpper(string input) => input.Cast<char>().All(IsUpper);
+        private bool WordContainsNonAlphaNumbers(Word w)
+        {
+            return !w.Text.ToCharArray().All(IsLetter);
+        }
+
+        private bool AllWordsAreNumeric(Line l)
+        {
+            return l.Words.All(WordIsNumeric);
+        }
+
+        private static bool WordIsNumeric(Word w)
+        {
+            double price;
+            return double.TryParse(w.Text, out price);
+        }
+
+        private bool IsAllUpper(string input) => input.ToUpper().Equals(input);
 
         public void RefreshData()
         {

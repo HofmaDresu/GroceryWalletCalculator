@@ -10,7 +10,7 @@ namespace GroceryWalletCalculator.Pages
 {
     public partial class AddOcrItemPage : ContentPage
     {
-        public AddOcrItemPage(double remainingLimit, string ocrItemName, double ocrItemPrice)
+        public AddOcrItemPage(double remainingLimit, string ocrItemName, double? ocrItemPrice)
         {
             InitializeComponent();
             BindingContext = new AddOcrItemViewModel(remainingLimit, ocrItemName, ocrItemPrice, Navigation);

@@ -4,26 +4,40 @@
              x:Class="GroceryWalletCalculator.Pages.CartPage"
              Title="{Binding Title}"
              x:Name="CartPage">
-  <StackLayout Orientation="Vertical" Margin="0,20,0,0">
-    <Label Text="{Binding RemainingCash}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="FillAndExpand"></Label>
-    <ListView x:Name="ListView"
-                  ItemsSource="{Binding Cart}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <TextCell Text="{Binding NameAndQuantity}"
-                    Detail="{Binding FormattedPrice}">
+  <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+    <StackLayout Orientation="Vertical" Padding="0,20,0,0" IsVisible="{Binding IsNotBusy}"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1,Constant=0}" >
+      <Label Text="{Binding RemainingCash}" FontSize="Large" HorizontalOptions="Center" VerticalOptions="FillAndExpand"></Label>
+      <ListView x:Name="ListView"
+                    ItemsSource="{Binding Cart}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <TextCell Text="{Binding NameAndQuantity}"
+                      Detail="{Binding FormattedPrice}">
 
-            <TextCell.ContextActions>
-              <MenuItem Command="{Binding Path=BindingContext.DeleteItem, Source={x:Reference Name=CartPage}}" CommandParameter="{Binding .}"
-                 Text="Remove" IsDestructive="True" />
-            </TextCell.ContextActions>
-          </TextCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-    <StackLayout VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-      <Button Text="Scan Price Tag" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
-      <Button Text="Manually Add Item" Command="{Binding ManualAddItem}" HorizontalOptions="CenterAndExpand"></Button>
+              <TextCell.ContextActions>
+                <MenuItem Command="{Binding Path=BindingContext.DeleteItem, Source={x:Reference Name=CartPage}}" CommandParameter="{Binding .}"
+                   Text="Remove" IsDestructive="True" />
+              </TextCell.ContextActions>
+            </TextCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+      <StackLayout VerticalOptions="End" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Button Text="Scan Price Tag" Command="{Binding ScanItem}" HorizontalOptions="CenterAndExpand"></Button>
+        <Button Text="Manually Add Item" Command="{Binding ManualAddItem}" HorizontalOptions="CenterAndExpand"></Button>
+      </StackLayout>
     </StackLayout>
-  </StackLayout>
+    <StackLayout Orientation="Vertical" Padding="0,20,0,0" IsVisible="{Binding IsBusy}"
+                 VerticalOptions="FillAndExpand"
+                 HorizontalOptions="FillAndExpand"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1,Constant=0}"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height,Factor=1,Constant=0}">
+      <Label Text="Scanning..." FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"></Label>
+      <ActivityIndicator IsVisible="True" IsRunning="True" HorizontalOptions="Center" VerticalOptions="Center"></ActivityIndicator>
+    </StackLayout>
+  </RelativeLayout>
 </ContentPage>

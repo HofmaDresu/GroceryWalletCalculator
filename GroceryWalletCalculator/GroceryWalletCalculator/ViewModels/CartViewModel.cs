@@ -26,6 +26,7 @@ namespace GroceryWalletCalculator.ViewModels
             _spendingLimit = spendingLimit;
             _nav = nav;
             _remainingCash = spendingLimit;
+            IsBusy = false;
             Title = $"Grocery Cart for {Data.Stores.Single(s => s.Id == storeId).Name}";
             Cart = new ObservableRangeCollection<FormattedGroceryItem>();
 
@@ -33,6 +34,7 @@ namespace GroceryWalletCalculator.ViewModels
             {
                 try
                 {
+                    IsBusy = true;
                     var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                     {
                         Directory = "PriceTags",
@@ -48,8 +50,17 @@ namespace GroceryWalletCalculator.ViewModels
                         text = await client.RecognizeTextAsync(photoStream);
                     }
 
-                    var itemName = text.Regions.SelectMany(r => r.Lines.Where(l => !AllWordsAreNumeric(l) && l.Words.All(w => IsAllUpper(w.Text) && (!WordContainsNonAlphaNumbers(w) || WordIsNumeric(w))))
-                                                .Select(l => string.Join(" ", l.Words.Select(w => w.Text)))).FirstOrDefault();
+                    var itemName =
+                        text.Regions.SelectMany(
+                            r =>
+                                r.Lines.Where(
+                                    l =>
+                                        !AllWordsAreNumeric(l) &&
+                                        l.Words.All(
+                                            w =>
+                                                IsAllUpper(w.Text) &&
+                                                (!WordContainsNonAlphaNumbers(w) || WordIsNumeric(w))))
+                                    .Select(l => string.Join(" ", l.Words.Select(w => w.Text)))).FirstOrDefault();
 
                     var pureNumericLines = text.Regions.SelectMany(r => r.Lines.Where(AllWordsAreNumeric)).ToList();
 
@@ -59,7 +70,7 @@ namespace GroceryWalletCalculator.ViewModels
                         return double.TryParse(w.Text, out price) ? price : 999999;
                     })).ToList();
 
-                    var itemPrice = prices.Any() ? prices.Min() : (double?)null;
+                    var itemPrice = prices.Any() ? prices.Min() : (double?) null;
 
                     await _nav.PushAsync(new AddOcrItemPage(_remainingCash, itemName, itemPrice));
                 }
@@ -67,6 +78,10 @@ namespace GroceryWalletCalculator.ViewModels
                 {
 
                     int asdf = 1;
+                }
+                finally
+                {
+                    IsBusy = false;
                 }
             }, _ => CrossMedia.Current.IsCameraAvailable);
 

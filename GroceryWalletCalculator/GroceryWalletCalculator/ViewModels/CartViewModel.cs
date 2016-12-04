@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using GroceryWalletCalculator.Models;
 using GroceryWalletCalculator.Pages;
 using GroceryWalletCalculator.Persistence;
+using Microsoft.ProjectOxford.Vision;
+using Microsoft.ProjectOxford.Vision.Contract;
 using MvvmHelpers;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -35,8 +37,41 @@ namespace GroceryWalletCalculator.ViewModels
                 });
 
                 var keys = await Keys.Keys.GetKeys();
+
+                OcrResults text;
+                var client = new VisionServiceClient(keys.MicrosoftVisionApiKey);
+                using (var photoStream = photo.GetStream())
+                {
+                    text = await client.RecognizeTextAsync(photoStream);
+                }
+
+                var itemName = text.Regions.SelectMany(r => r.Lines.Where(l => l.Words.All(w => IsAllUpper(w.Text))).Select(l => string.Join(" ", l.Words.Select(w => w.Text)))).FirstOrDefault();
+
+                var pureNumericLines = text.Regions.SelectMany(r => r.Lines.Where(l => l.Words.All(w =>
+                {
+                    double price;
+                    return double.TryParse(w.Text, out price);
+                })));
+
+                var itemPrice = pureNumericLines.SelectMany(l => l.Words.Select(w =>
+                {
+                    double price;
+                    return double.TryParse(w.Text, out price) ? price : 999999;
+                })).Min();
+
+                var foo = 1;
             }, _ => CrossMedia.Current.IsCameraAvailable);
             ManualAddItem = new Command(_ => _nav.PushAsync(new AddManualItemPage(_remainingCash)));
+        }
+        bool IsAllUpper(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (!Char.IsUpper(input[i]))
+                    return false;
+            }
+
+            return true;
         }
 
         public void RefreshData()

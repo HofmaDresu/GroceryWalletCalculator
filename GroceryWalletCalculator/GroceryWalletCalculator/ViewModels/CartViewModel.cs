@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,7 +62,14 @@ namespace GroceryWalletCalculator.ViewModels
 
                 await _nav.PushAsync(new AddOcrItemPage(_remainingCash, itemName, itemPrice));
             }, _ => CrossMedia.Current.IsCameraAvailable);
+
             ManualAddItem = new Command(async _ => await _nav.PushAsync(new AddManualItemPage(_remainingCash)));
+
+            DeleteItem = new Command<FormattedGroceryItem>(item =>
+            {
+                Data.Cart.Remove(Data.Cart.FirstOrDefault(i => i.Name == item.Name && Math.Abs(i.Price - item.Price) < .001 && Math.Abs(i.Quantity - item.Quantity) < .001));
+                RefreshData();
+            });
         }
 
         private bool IsAllUpper(string input) => input.Cast<char>().All(IsUpper);
@@ -83,6 +91,8 @@ namespace GroceryWalletCalculator.ViewModels
         public Command ScanItem { get; protected set; }
 
         public Command ManualAddItem { get; protected set; }
+
+        public Command DeleteItem { get; protected set; }
     }
 
     public class FormattedGroceryItem

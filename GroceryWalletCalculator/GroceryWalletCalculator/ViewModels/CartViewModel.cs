@@ -38,7 +38,9 @@ namespace GroceryWalletCalculator.ViewModels
                     var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                     {
                         Directory = "PriceTags",
-                        Name = "PriceTag.jpg"
+                        Name = "PriceTag.jpg",
+                        CompressionQuality = 50,
+                        AllowCropping = false
                     });
 
                     var keys = await Keys.Keys.GetKeys();
